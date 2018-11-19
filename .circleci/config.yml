@@ -11,4 +11,11 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: echo "Hello World!"
+      - run: go get ./...
+      - run:
+          name: Build the executable
+          command: |
+            go build
+            echo "Blah blah hello"
+      - store_artifacts:
+          path: ./circleci-hello
