@@ -1,0 +1,14 @@
+# Version 1.0.0
+# Similar config between jobs
+defaults: &defaults
+  working_directory: ~/circleci-hello
+  docker:
+    - image: circleci/golang:1.11.1-stretch
+
+version: 2
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: echo "Hello World!"
