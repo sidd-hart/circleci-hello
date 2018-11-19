@@ -1,7 +1,7 @@
 # Version 1.0.0
 # Similar config between jobs
 defaults: &defaults
-  working_directory: ~/circleci-hello
+  working_directory: /go/src/github.com/Static-Void-Academy/circleci-hello
   docker:
     - image: circleci/golang:1.11.1-stretch
 
