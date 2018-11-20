@@ -1,9 +1,13 @@
 # Version 1.0.0
 # Similar config between jobs
-defaults: &defaults
-  working_directory: /go/src/github.com/Static-Void-Academy/circleci-hello
-  docker:
-    - image: circleci/golang:1.11.1-stretch
+common: 
+  - &defaults
+    working_directory: /go/src/github.com/Static-Void-Academy/circleci-hello
+    docker:
+      - image: circleci/golang:1.11.1-stretch
+
+  - &get_deps
+      run: go get -d ./...
 
 version: 2
 jobs:
@@ -11,7 +15,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: go get ./...
+      - *get_deps
       - run:
           name: Build the executable
           command: |
@@ -28,7 +32,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: go get -d ./...
+      - *get_deps
       - run: go test
 
 workflows:
