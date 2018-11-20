@@ -23,3 +23,10 @@ jobs:
       - store_artifacts:
           path: ./circleci-hello
 
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: go get -d ./...
+      - run: go test
