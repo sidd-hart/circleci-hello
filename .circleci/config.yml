@@ -19,6 +19,7 @@ jobs:
             echo "Blah blah hello"
       - persist_to_workspace:
           root: .
+          paths: ./*
       - store_artifacts:
           path: ./circleci-hello
 
