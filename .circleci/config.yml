@@ -13,6 +13,9 @@ jobs:
           command:
             echo "Other important command here as example"
             go build 
+      - persist_to_workspace:
+          root: . # persist current working directory
+          paths: ./* # glob will persist everything
       - store_artifacts:
           path: ./circleci-hello # executable
 
@@ -21,6 +24,8 @@ jobs:
       - image: circleci/golang:1.11.1
     working_directory: /go/src/github.com/sid/circleci-hello
     steps:
+      - attach_workspace:
+          at: .
       - checkout
       - run: echo "hello 2"
       - run: go test
