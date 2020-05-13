@@ -29,3 +29,12 @@ jobs:
       - checkout
       - run: echo "hello 2"
       - run: go test
+
+workflows:
+  version: 2
+  build_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
